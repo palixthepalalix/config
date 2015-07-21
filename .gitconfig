@@ -1,0 +1,41 @@
+#user information
+[user]
+	name = Alix Cook
+	email = acook@appnexus.com
+
+#color highlighting
+[color]
+	ui = auto
+	interactive = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+#command aliases
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  alias = "config --get-regexp 'alias.*'"
+
+#some core configurations
+[core]
+	autocrlf = false
+	editor = vim
