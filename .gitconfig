@@ -31,9 +31,14 @@
 	ci = commit
 	br = branch
 	co = checkout
+    surf = submodule update --recursive --init --force
 	df = diff
+    pu = pull --ff-only
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   alias = "config --get-regexp 'alias.*'"
+  unpushed = log --stat origin/master..HEAD
+    gg = grep --break --heading -n
+    diff = diff --word-diff
 
 #some core configurations
 [core]
