@@ -8,7 +8,7 @@ function weather() {
 
 function go() {
   # a function to use go on jump with a couple of improvements
-  if [ $# -eq 0 ]; then 
+  if [ $# -eq 0 ]; then
     # 0 arg supplied, check if clipboard has hostname and if it looks right, ssh to it
     h=`/usr/bin/pbpaste`
     if [ `echo $h | perl -ne 'if (/^\d{2,}\.[\w-]+\.[\w-]+\.\w{3,4}$/) {print 1;} else { print 0; }'` -eq 1 ]; then
@@ -17,7 +17,7 @@ function go() {
     fi
   fi
 
-  if [ $# -eq 1 ]; then 
+  if [ $# -eq 1 ]; then
     if [ `echo $1 | perl -ne 'if (/^\d{2,}\.[\w-]+\.[\w-]+\.\w{3,4}$/) {print 1;} else { print 0; }'` -eq 1 ]; then
       # 1 arg supplied, probably well-formed hostname as it matched regexp, so try ssh directly
       ssh $1

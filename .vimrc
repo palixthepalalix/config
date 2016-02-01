@@ -1,5 +1,5 @@
 " vimrc
-" Nate Brennand
+"Alix Cook 
 
 " Vundle setup
 set nocompatible
