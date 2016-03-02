@@ -32,7 +32,6 @@ function go() {
     if [ -n "$3" ]; then
       num="$3"
     fi
-
     app=`grep " $1$" ~/app_aliases | cut -f1 -d' '`
 
     local hostname="$num-$app-$env.envnxs.net"
