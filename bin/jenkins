@@ -1,0 +1,125 @@
+#!/usr/bin/env php
+<?php
+$args = $_SERVER['argv'];
+$command = "curl --user ";
+$user = 'acook';
+$key = '4ed5479514fbdd580ab74cd70c192372';
+$job = 'EQ-Sandbox-Workflow-Runner';
+$email = 'acook';
+$framework = 'origin/master';
+$testCases = 'origin/master';
+$subDirectory = '/';
+$options = '--max-processes 30 --check-env';
+$envName = 'auto';
+$autoenvTemplate = '';
+$autoRelease = "false";
+$slackNotify = "true";
+$slackChannel = '';
+$description = '$FrameworkBranch $TestCasesBranch';
+$devJenkins = "https://jenkins.dev.adnxs.net/";
+$masterJenkins = "https://jenkins.adnxs.net/";
+$jenkins = $devJenkins;
+
+// function showBuilds($baseURL)
+// {
+// 	$curl = curl_init();
+// 	curl_setopt($curl, CURLOPT_USERPWD, "{$user}:{$key}");
+// 	$url = $baseURL . 'api/json?tree=jobs[name]';
+// 	curl_setopt($curl, CURLOPT_URL, $url);
+// 	curl_setopt($curl, CURLOPT_POST, true);
+// 	$response = curl_exec($curl);
+// 	print_r($response);
+// 	exit;
+// }
+array_shift($args);
+while (($value = array_shift($args)))
+{
+	switch ($value) {
+		case '--show-builds':
+			$curl = curl_init();
+			//curl_setopt($curl, CURLOPT_USERPWD, "{$user}:{$key}");
+			$url = $masterJenkins . 'api/json?tree=jobs[name]';
+			curl_setopt($curl, CURLOPT_URL, $url);
+			//curl_setopt($curl, CURLOPT_POST, true);
+			$response = (string)curl_exec($curl);
+			$json = json_decode($response, true);
+			break;
+		case '--user':
+			$user = array_shift($args);
+			break;
+		case '--key':
+			$key = array_shift($args);
+			break;
+		case '--job':
+			$job = array_shift($args);
+			break;
+		case '--email':
+			$email = array_shift($args);
+			break;
+		case '--framework':
+			$framework = array_shift($args);
+			break;
+		case '--test-cases':
+			$testCases = array_shift($args);
+			break;
+		case '--sub-dir':
+			$subDirectory = array_shift($args);
+			break;
+		case '--options':
+			$options = array_shift($args);
+			break;
+		case '--env':
+			$envName = array_shift($args);
+			break;
+		case '--env-template':
+			$autoenvTemplate = array_shift($args);
+			break;
+		case '--release':
+			$release = true;
+			break;
+		case '--no-slack-notify':
+			$slackNotify = false;
+		case '--channel':
+			$slackChannel = array_shift($args);
+			break;
+		case '--description':
+			$description = array_shift($args);
+			break;
+		case '--dev':
+			$jenkins = $devJenkins;
+			break;
+		case '--master':
+			$jenkins = $masterJenkins;
+			break;
+		case '--help':
+		case '-h':
+
+		default:
+			echo 'Invalid flag';
+			exit;
+	}
+
+}
+$url = "{$jenkins}job/{$job}/buildWithParameters?";
+
+$parameters = "Email=%s&FrameworkBranch=%s&TestCasesBranch=%s&SubDirectory=%s&EnvName=%s&AutoEnvTemplate=%s&AutoRelease=%s&SlackNotify=%s&SlackChannel=%s&Options=%s";
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_USERPWD, "{$user}:{$key}");
+$parameters = sprintf($parameters, urlencode($email), urlencode($framework), urlencode($testCases), urlencode($subDirectory), urlencode($envName), urlencode($autoenvTemplate), urlencode($autoRelease), urlencode($slackNotify), urlencode($slackChannel), urlencode($options));
+$url .= $parameters;
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, true);
+$response = curl_exec($curl);
+
+
+
+
+
+
+
+
+
+
+
+
+

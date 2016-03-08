@@ -1,0 +1,6 @@
+#!/bin/bash
+# push
+# get the current branch
+branch=`git branch -l | grep '*' | cut -f2 -d' '`
+# push $branch
+git push origin $branch

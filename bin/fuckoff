@@ -1,0 +1,125 @@
+#!/usr/bin/env php
+<?php
+
+function printUsage(array $arguments)
+{
+	print('usage:' . PHP_EOL);
+	foreach ($arguments as $arg => $vals)
+	{
+		print($arg . ' ' . implode(' ', $vals) . PHP_EOL);
+	}
+}
+
+$args = $_SERVER['argv'];
+array_shift($args);
+$serviceToArgsMap = array(
+	'off' => array('name','from'),
+	'you'  => array('name','from'),
+	'this'  => array('from'),
+	'that'  => array('from'),
+	'everything'  => array('from'),
+	'everyone'  => array('from'),
+	'donut'  => array('name','from'),
+	'chainsaw'  => array('name','from'),
+	'madison'  => array('name','from'),
+	'nugget'  => array('name','from'),
+	'diabetes'  => array('from'),
+	'bus'  => array('name','from'),
+	'shutup'  => array('name','from'),
+	'bucket'  => array('name','from'),
+	'dosomething'  => array('do','something', 'from'),
+	'retard'  => array('from'),
+	'thumbs' => array('from')
+);
+if (empty($args) || $args[0] == 'help')
+{
+	printUsage($serviceToArgsMap);
+	exit;
+}
+
+if (!in_array($args[0], array_keys($serviceToArgsMap)))
+{
+	print('invalid command ' . $args[0] . PHP_EOL);
+}
+
+$callType = $args[0];
+
+
+
+
+// array_shift($args);
+// while (($value = array_shift($args)))
+// {
+// 	switch ($value) {
+// 		case '--service':
+// 			$user = array_shift($args);
+// 			break;
+// 		case '--to':
+// 			$key = array_shift($args);
+// 			break;
+// 		case '--from':
+// 			$job = array_shift($args);
+// 			break;
+// 		case '--email':
+// 			$email = array_shift($args);
+// 			break;
+// 		case '--framework':
+// 			$framework = array_shift($args);
+// 			break;
+// 		case '--test-cases':
+// 			$testCases = array_shift($args);
+// 			break;
+// 		case '--sub-dir':
+// 			$subDirectory = array_shift($args);
+// 			break;
+// 		case '--options':
+// 			$options = array_shift($args);
+// 			break;
+// 		case '--env':
+// 			$envName = array_shift($args);
+// 			break;
+// 		case '--env-template':
+// 			$autoenvTemplate = array_shift($args);
+// 			break;
+// 		case '--release':
+// 			$release = true;
+// 			break;
+// 		case '--no-slack-notify':
+// 			$slackNotify = false;
+// 		case '--channel':
+// 			$slackChannel = array_shift($args);
+// 			break;
+// 		case '--description':
+// 			$description = array_shift($args);
+// 			break;
+// 		case '--dev':
+// 			$jenkins = $devJenkins;
+// 			break;
+// 		case '--master':
+// 			$jenkins = $masterJenkins;
+// 			break;
+// 		case '--help':
+// 		case '-h':
+
+// 		default:
+// 			echo 'Invalid flag';
+// 			exit;
+// 	}
+
+// }
+// $url = "{$jenkins}job/{$job}/buildWithParameters?";
+
+// $parameters = "Email=%s&FrameworkBranch=%s&TestCasesBranch=%s&SubDirectory=%s&EnvName=%s&AutoEnvTemplate=%s&AutoRelease=%s&SlackNotify=%s&SlackChannel=%s&Options=%s";
+// $curl = curl_init();
+// curl_setopt($curl, CURLOPT_USERPWD, "{$user}:{$key}");
+// $parameters = sprintf($parameters, urlencode($email), urlencode($framework), urlencode($testCases), urlencode($subDirectory), urlencode($envName), urlencode($autoenvTemplate), urlencode($autoRelease), urlencode($slackNotify), urlencode($slackChannel), urlencode($options));
+// $url .= $parameters;
+// curl_setopt($curl, CURLOPT_URL, $url);
+// curl_setopt($curl, CURLOPT_POST, true);
+// $response = curl_exec($curl);
+
+
+
+
+
+
