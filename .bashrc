@@ -110,6 +110,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export EDITOR=vim
-export PATH=~/bin:$PATH:/usr/local/opt/go/libexec/bin:/usr/bin:/usr/local/bin
+export PATH=~/bin:$PATH:/usr/local/opt/go/libexec/bin:/usr/bin:/usr/local/bin:/Users/acook/eq-tools-nodev/bin
 
 ulimit -u 256
